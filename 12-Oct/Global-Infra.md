@@ -21,3 +21,12 @@ In terms of AWS, it’s infrastructure is made up of
 - AWS Price Calculator https://calculator.aws/#/
 - Availability of Services are different for different AWS Regions.
 - Few Services are available in ALL(GLOBAL) AWS Regions.
+
+#### Availability Zones
+- The Availability zones are where the actual data centers are located.
+- So within a Region there can be multiple Availability zones which are physically separated but are connected through low latency and high speed internet connections.
+- AZ’s are physically separated by a meaningful distance, many kilometers, from any other AZ, although all are within 100+ km (60+ miles) of each other.
+- https://docs.aws.amazon.com/images/AWSEC2/latest/UserGuide/images/region-with-azs.png
+- "Properly designed applications will utilize multiple availability zones for High Availability and  Fault Tolerance"
+- Single Zone Setup : https://s3.amazonaws.com/awsmp-fulfillment-cf-templates-prod/08be5b5c-87e6-4dde-834b-56ac8c2fb521.59a1e99b-b86c-49ef-acf9-c460450db888.png
+- Multi Zone(HA) Setup : https://d2908q01vomqb2.cloudfront.net/fc074d501302eb2b93e2554793fcaf50b3bf7291/2018/03/23/wordpress-on-aws.png
