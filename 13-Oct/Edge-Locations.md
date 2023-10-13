@@ -15,3 +15,4 @@
 
 - An example would be CloudFront which is a CDN:
 -- Cached items such as a PDF file can be cached on the edge location which reduces the amount of "space/time/latency" required for a request from the other part of the world.
+- https://d2908q01vomqb2.cloudfront.net/5b384ce32d8cdef02bc3a139d4cac0a22bb029e8/2020/06/07/S3-Blog-2-1024x576.jpg
