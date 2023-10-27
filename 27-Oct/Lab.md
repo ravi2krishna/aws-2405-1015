@@ -39,3 +39,20 @@ sudo apt -y install nginx
 sudo rm /var/www/html/*.html
 sudo git clone https://github.com/ravi2krishna/ecomm.git /var/www/html
 ```
+## Meta Data
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
+- http://169.254.169.254/latest/meta-data/
+
+- Metadata script
+```bash
+curl http://169.254.169.254/latest/meta-data/
+curl http://169.254.169.254/latest/meta-data/instance-id
+curl http://169.254.169.254/latest/meta-data/public-ipv4
+curl http://169.254.169.254/latest/meta-data/local-ipv4
+```
+
+
+
+
+
+
