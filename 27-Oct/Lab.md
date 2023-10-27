@@ -28,4 +28,14 @@ sudo git clone https://github.com/ravi2krishna/ecomm.git /var/www/html
 ls /var/www/html
 ```
 
+## User Data
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html
 
+- User data script
+```bash
+#!/bin/bash
+sudo apt -y update
+sudo apt -y install nginx
+sudo rm /var/www/html/*.html
+sudo git clone https://github.com/ravi2krishna/ecomm.git /var/www/html
+```
