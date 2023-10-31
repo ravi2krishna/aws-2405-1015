@@ -10,3 +10,10 @@
 - Any additional volume can be attached or detached from instance at any time and is not deleted by default when instance is terminated.
 - An EBS volume can attach to a single EC2 Instance only at a time.
 - EBS volumes have the benefit of being backed up into a snapshot - which can later be restored into a new EBS volume.
+
+## Lab Commands
+
+- df -h
+- sudo mkfs -t ext4 /dev/xvdf			
+- sudo mkdir /add-vol
+- sudo mount /dev/xvdf /add-vol
