@@ -11,3 +11,9 @@
 - By default, versioning is disabled on all buckets.
 - Versioning can only be set on the bucket level and applies to ALL objects in the bucket.
 - Once versioning is enabled, you can only "suspend" versioning. It cannot be fully disabled.
+
+## S3 Web Hosting
+
+- S3 provides web hosting to turn a bucket into web site
+- S3 web hosting supports only for Frontend, no dynamic functionality (No Database)
+- By default, Wen Hosting is disabled on all buckets.
