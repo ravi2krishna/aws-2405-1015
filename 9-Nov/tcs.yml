@@ -1,0 +1,216 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: tcs vpc for project
+Resources:
+  tcsVPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.0.0.0/16
+      EnableDnsSupport: 'true'
+      EnableDnsHostnames: 'true'
+      Tags:
+      - Key: Name
+        Value: tcs-vpc
+
+  tcsInternetGateway:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+      - Key: Name
+        Value: tcs-igw
+
+  tcsAttachGateway:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      VpcId:
+        Ref: tcsVPC
+      InternetGatewayId:
+        Ref: tcsInternetGateway
+
+  tcswebSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: tcsVPC
+      CidrBlock: 10.0.0.0/20
+      AvailabilityZone: "us-east-2a"
+      MapPublicIpOnLaunch: 'true'
+      Tags:
+      - Key: Name
+        Value: tcs-web-subnet
+
+  tcsdbSubnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId:
+        Ref: tcsVPC
+      CidrBlock: 10.0.16.0/20
+      AvailabilityZone: "us-east-2b"
+      MapPublicIpOnLaunch: 'false'
+      Tags:
+      - Key: Name
+        Value: tcs-db-subnet
+
+  tcswebRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:  
+        Ref: tcsVPC
+      Tags:
+      - Key: Name
+        Value: tcs-web-route
+
+  tcsdbRouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId:  
+        Ref: tcsVPC
+      Tags:
+      - Key: Name
+        Value: tcs-db-route
+
+  tcsigwRoute:
+    Type: AWS::EC2::Route
+    DependsOn: tcsAttachGateway
+    Properties:
+       RouteTableId:
+         Ref: tcswebRouteTable
+       DestinationCidrBlock: 0.0.0.0/0
+       GatewayId:
+         Ref: tcsInternetGateway
+
+  tcswebSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: tcswebSubnet
+      RouteTableId:
+        Ref: tcswebRouteTable
+
+  tcsdbSubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId:
+        Ref: tcsdbSubnet
+      RouteTableId:
+        Ref: tcsdbRouteTable
+
+  tcswebNetworkAcl:
+    Type: AWS::EC2::NetworkAcl
+    Properties:
+        VpcId:
+          Ref: tcsVPC
+        Tags:
+        - Key: Name
+          Value: tcs-web-nacl        
+  tcswebInboundRule:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+       NetworkAclId:
+         Ref: tcswebNetworkAcl
+       RuleNumber: 100
+       Protocol: 6
+       RuleAction: allow
+       CidrBlock: 0.0.0.0/0
+       PortRange:
+         From: 0
+         To: 65535
+  tcswebOutboundRule:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+       NetworkAclId:
+         Ref: tcswebNetworkAcl
+       RuleNumber: 100
+       Protocol: -1
+       Egress: true
+       RuleAction: allow
+       CidrBlock: 0.0.0.0/0
+
+  tcswebSubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId:
+        Ref: tcswebSubnet
+      NetworkAclId:
+        Ref: tcswebNetworkAcl
+
+
+  tcsdbNetworkAcl:
+    Type: AWS::EC2::NetworkAcl
+    Properties:
+        VpcId:
+          Ref: tcsVPC
+        Tags:
+        - Key: Name
+          Value: tcs-db-nacl        
+  tcsdbInboundRule:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+       NetworkAclId:
+         Ref: tcsdbNetworkAcl
+       RuleNumber: 100
+       Protocol: 6
+       RuleAction: allow
+       CidrBlock: 0.0.0.0/0
+       PortRange:
+         From: 0
+         To: 65535
+  tcsdbOutboundRule:
+    Type: AWS::EC2::NetworkAclEntry
+    Properties:
+       NetworkAclId:
+         Ref: tcsdbNetworkAcl
+       RuleNumber: 100
+       Protocol: -1
+       Egress: true
+       RuleAction: allow
+       CidrBlock: 0.0.0.0/0
+
+  tcsdbSubnetNetworkAclAssociation:
+    Type: AWS::EC2::SubnetNetworkAclAssociation
+    Properties:
+      SubnetId:
+        Ref: tcsdbSubnet
+      NetworkAclId:
+        Ref: tcsdbNetworkAcl
+
+  tcswebInstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow tcs traffic
+      VpcId: !Ref tcsVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0  
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 0
+          ToPort: 65535
+          CidrIp: 0.0.0.0/0
+      Tags:
+      - Key: Name
+        Value: tcs-web-sg
+
+  tcsdbInstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Allow tcs traffic
+      VpcId: !Ref tcsVPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 10.0.0.0/16
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 0
+          ToPort: 65535
+          CidrIp: 0.0.0.0/0
+      Tags:
+      - Key: Name
+        Value: tcs-db-sg
