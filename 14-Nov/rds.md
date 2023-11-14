@@ -40,4 +40,23 @@ CREATE TABLE `USER` (
 - ./startup.sh
 - Browse the tomcat server by public-ip:8080, you will be able to see the Tomcat page
 
+## Login Application Setup
+
+- cd ~
+- git clone -b aws https://github.com/ravi2krishna/aws-rds-java.git
+- cd aws-rds-java
+- vi src/main/webapp/userRegistration.jsp
+- vi src/main/webapp/login.jsp
+
+- Connection con = DriverManager.getConnection("jdbc:mysql://rds-address:3306/jwt",
+            "root", "Admin123*");
+
+- Install maven for building java application
+- sudo apt install maven -y
+- cd ~/aws-rds-java
+- mvn package
+- copy war file in target directory to apache webapps directory
+- cp ~/aws-rds-java/target/LoginWebApp.war ~/apache-tomcat-7.0.94/webapps
+- Browse : http://App-Server-Public-IP:8080/LoginWebApp
+
 
