@@ -28,5 +28,16 @@ CREATE TABLE `USER` (
 ```
 - select * from USER;
 
+## Tomcat
+
+- Tomcat is an application server for running java web applications
+- Install Java
+- sudo apt install openjdk-11* -y
+- Setup Tomcat Software
+- wget https://archive.apache.org/dist/tomcat/tomcat-7/v7.0.94/bin/apache-tomcat-7.0.94.tar.gz
+- tar xvf apache-tomcat-7.0.94.tar.gz
+- cd apache-tomcat-7.0.94/bin
+- ./startup.sh
+- Browse the tomcat server by public-ip:8080, you will be able to see the Tomcat page
 
 
