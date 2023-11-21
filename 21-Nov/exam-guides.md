@@ -20,3 +20,9 @@
 - http://d0.awsstatic.com/whitepapers/aws-building-fault-tolerant-applications.pdf
 - http://d0.awsstatic.com/whitepapers/aws-overview.pdf
 - http://d0.awsstatic.com/whitepapers/aws-storage-use-cases.pdf
+
+### AWS Practice Exams 
+
+- Practioner : https://www.whizlabs.com/aws-certified-cloud-practitioner/
+- Associate Solutions Arhitect : https://www.whizlabs.com/aws-solutions-architect-associate/
+  
