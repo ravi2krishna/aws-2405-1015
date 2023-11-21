@@ -7,3 +7,7 @@
 ### Project 2 : Deploying Servers - Learning Management System (LMS)
 
 - This project focuses on provisioning and configuring servers to host the Learning Management System (LMS) within the previously designed Virtual Private Cloud (VPC). The servers will include instances for the backend, frontend, and database, each operating within dedicated subnets and under the security provisions of the VPC. By successfully completing this project, the LMS infrastructure will be established and ready for deployment.
+
+### Project 3 : Use PAAS Services To Deploy LMS (RDS+S3+Beanstalk)
+
+- This project is focused on deploying the Learning Management System (LMS) using a combination of AWS platform as a service (PaaS) offerings. These services include Amazon RDS for the database, Amazon S3 for hosting the frontend, and AWS Elastic Beanstalk for the Dockerized Node.js backend. This approach leverages AWS's managed services to simplify deployment, management, and scaling of the LMS, while ensuring reliability, security, and ease of use.
