@@ -12,3 +12,11 @@
 ### AWS Practioner
 
 - https://www.examtopics.com/exams/amazon/aws-certified-cloud-practitioner-clf-c02/view/
+
+### AWS White Papers
+
+- https://aws.amazon.com/whitepapers/
+- http://d0.awsstatic.com/whitepapers/aws-storage-options.pdf
+- http://d0.awsstatic.com/whitepapers/aws-building-fault-tolerant-applications.pdf
+- http://d0.awsstatic.com/whitepapers/aws-overview.pdf
+- http://d0.awsstatic.com/whitepapers/aws-storage-use-cases.pdf
