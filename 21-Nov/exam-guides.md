@@ -26,3 +26,7 @@
 - Practioner : https://www.whizlabs.com/aws-certified-cloud-practitioner/
 - Associate Solutions Arhitect : https://www.whizlabs.com/aws-solutions-architect-associate/
   
+### AWS Exam Schedule
+
+- Practioner : https://aws.amazon.com/certification/certified-cloud-practitioner/
+- Associate Solutions Arhitect : https://aws.amazon.com/certification/certified-solutions-architect-associate/
