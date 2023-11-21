@@ -11,3 +11,7 @@
 ### Project 3 : Use PAAS Services To Deploy LMS (RDS+S3+Beanstalk)
 
 - This project is focused on deploying the Learning Management System (LMS) using a combination of AWS platform as a service (PaaS) offerings. These services include Amazon RDS for the database, Amazon S3 for hosting the frontend, and AWS Elastic Beanstalk for the Dockerized Node.js backend. This approach leverages AWS's managed services to simplify deployment, management, and scaling of the LMS, while ensuring reliability, security, and ease of use.
+
+### Project 4 : Create Highly Available Infra For LMS Project - AWS Load Balancer & Auto Scaling
+
+- This project aims to design and deploy a highly available Virtual Private Cloud (VPC) for the Learning Management System (LMS) on AWS. The architecture involves the use of two availability zones (AZs) for each component: the database, backend, and frontend. This design enhances redundancy, fault tolerance, and high availability. AWS Load Balancers will be utilized to distribute traffic across these AZs for each component, ensuring continuous service availability.
